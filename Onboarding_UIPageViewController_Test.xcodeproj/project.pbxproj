@@ -15,6 +15,7 @@
 		33692C5B2120E17700A7635D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33692C592120E17700A7635D /* LaunchScreen.storyboard */; };
 		33692C662120E17700A7635D /* Onboarding_UIPageViewController_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33692C652120E17700A7635D /* Onboarding_UIPageViewController_TestTests.swift */; };
 		33692C712120E17700A7635D /* Onboarding_UIPageViewController_TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33692C702120E17700A7635D /* Onboarding_UIPageViewController_TestUITests.swift */; };
+		33692C7F2120E24B00A7635D /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33692C7E2120E24B00A7635D /* OnboardingPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		33692C6C2120E17700A7635D /* Onboarding_UIPageViewController_TestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Onboarding_UIPageViewController_TestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		33692C702120E17700A7635D /* Onboarding_UIPageViewController_TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding_UIPageViewController_TestUITests.swift; sourceTree = "<group>"; };
 		33692C722120E17700A7635D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33692C7E2120E24B00A7635D /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				33692C4D2120E17500A7635D /* AppDelegate.swift */,
 				33692C4F2120E17500A7635D /* ViewController.swift */,
 				33692C512120E17500A7635D /* Main.storyboard */,
+				33692C7E2120E24B00A7635D /* OnboardingPageViewController.swift */,
 				33692C572120E17700A7635D /* Assets.xcassets */,
 				33692C592120E17700A7635D /* LaunchScreen.storyboard */,
 				33692C5C2120E17700A7635D /* Info.plist */,
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33692C7F2120E24B00A7635D /* OnboardingPageViewController.swift in Sources */,
 				33692C502120E17500A7635D /* ViewController.swift in Sources */,
 				33692C562120E17500A7635D /* Onboarding_UIPageViewController_Test.xcdatamodeld in Sources */,
 				33692C4E2120E17500A7635D /* AppDelegate.swift in Sources */,
