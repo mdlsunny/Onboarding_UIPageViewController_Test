@@ -10,9 +10,12 @@ import UIKit
 class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate
 {
     var pageControl = UIPageControl()
+    var screenHeight = UIScreen.main.bounds.height
+    var screenWidth = UIScreen.main.bounds.width
     
     func configurePageControl() {
-        pageControl = UIPageControl(frame: CGRect(x: 0, y: (UIScreen.main.bounds.maxY - 50), width: UIScreen.main.bounds.width, height: 50))
+        let pageControlHeightToBoundsHeight: CGFloat = 0.07
+        pageControl = UIPageControl(frame: CGRect(x: 0, y: screenHeight * (1 - pageControlHeightToBoundsHeight), width: screenWidth, height: screenHeight * pageControlHeightToBoundsHeight ))
         self.pageControl.numberOfPages = subViewControllers.count
         self.pageControl.currentPage = 0
         self.pageControl.alpha = 0.75
@@ -24,6 +27,7 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewDidLoad")
         self.delegate = self
         self.dataSource = self
         if let firstViewController = subViewControllers.first {
@@ -37,6 +41,37 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
         self.pageControl.currentPage = subViewControllers.index(of: pageContentViewController)!
     }
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        print(#function)
+//    }
+//
+//    override func viewWillLayoutSubviews() {
+//        print(#function)
+//    }
+//
+//    override func viewDidLayoutSubviews() {
+//        print(#function)
+//        super.viewDidLayoutSubviews()
+//    }
+//
+//    override func updateViewConstraints() {
+//        print(#function)
+//        super.updateViewConstraints()
+//    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        print(#function)
+        screenHeight = UIScreen.main.bounds.height
+        screenWidth = UIScreen.main.bounds.width
+        //        print("height: \(screenHeight)")
+        //        print("width: \(screenWidth)")
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: { _ in self.configurePageControl() }, completion: nil )
+//        coordinator.animate(alongsideTransition: nil, completion: { _ in self.configurePageControl()} )
+//        coordinator.animate(alongsideTransition: <#T##((UIViewControllerTransitionCoordinatorContext) -> Void)?##((UIViewControllerTransitionCoordinatorContext) -> Void)?##(UIViewControllerTransitionCoordinatorContext) -> Void#>, completion: <#T##((UIViewControllerTransitionCoordinatorContext) -> Void)?##((UIViewControllerTransitionCoordinatorContext) -> Void)?##(UIViewControllerTransitionCoordinatorContext) -> Void#>
+//        coordinator.animateAlongsideTransition(in: <#T##UIView?#>, animation: <#T##((UIViewControllerTransitionCoordinatorContext) -> Void)?##((UIViewControllerTransitionCoordinatorContext) -> Void)?##(UIViewControllerTransitionCoordinatorContext) -> Void#>, completion: <#T##((UIViewControllerTransitionCoordinatorContext) -> Void)?##((UIViewControllerTransitionCoordinatorContext) -> Void)?##(UIViewControllerTransitionCoordinatorContext) -> Void#>)
+    }
+
     lazy var subViewControllers: [UIViewController] = {
         return [
             UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "vc1"),
@@ -60,7 +95,12 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
         return subViewControllers[currentPageIndex + 1]
     }
     
-    func pageViewControllerSupportedInterfaceOrientations(_ pageViewController: UIPageViewController) -> UIInterfaceOrientationMask {
-        return UIInterfaceOrientationMask.portrait
-    }
+    // None of below seem to work on iPad...
+//    func pageViewControllerSupportedInterfaceOrientations(_ pageViewController: UIPageViewController) -> UIInterfaceOrientationMask {
+//        return UIInterfaceOrientationMask.portrait
+//    }
+    
+//    override var shouldAutorotate: Bool {
+//        return false
+//    }
 }
