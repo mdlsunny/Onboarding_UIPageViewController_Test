@@ -12,10 +12,13 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
     var pageControl = UIPageControl()
     var screenHeight = UIScreen.main.bounds.height
     var screenWidth = UIScreen.main.bounds.width
+    var screenMaxX = UIScreen.main.bounds.maxX
+    var screenMaxY = UIScreen.main.bounds.maxY
     let pageControlHeightToBoundsHeight: CGFloat = 0.07
 
     func configurePageControl() {
-        pageControl.frame = CGRect(x: 0, y: screenHeight * (1 - pageControlHeightToBoundsHeight), width: screenWidth, height: screenHeight * pageControlHeightToBoundsHeight)
+//        pageControl.frame = CGRect(x: 0, y: screenHeight * (1 - pageControlHeightToBoundsHeight), width: screenWidth, height: screenHeight * pageControlHeightToBoundsHeight)
+        pageControl.frame = CGRect(x: 0, y: (screenHeight - 50), width: screenWidth, height: 50)
         self.pageControl.numberOfPages = subViewControllers.count
         self.pageControl.currentPage = 0
         self.pageControl.alpha = 0.75
@@ -41,74 +44,33 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
         self.pageControl.currentPage = subViewControllers.index(of: pageContentViewController)!
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        print(#function)
-//    }
-
-    override func viewWillLayoutSubviews() {
-        print(#function)
-    }
-    
     override func viewDidLayoutSubviews() {
         print(#function)
-//        super.viewDidLayoutSubviews()
-//        pageControl.frame = CGRect(x: 0, y: screenHeight * (1 - pageControlHeightToBoundsHeight), width: screenWidth, height: screenHeight * pageControlHeightToBoundsHeight)
+        super.viewDidLayoutSubviews()
+        updateViewConstraints()
+        //// either put configurePageControl() or just pageControl.frame = CGRect(x: 0, y: (screenHeight - 50), width: screenWidth, height: 50)
+        //// below or in viewWillTransition()
+        // configurePageControl()
+        pageControl.frame = CGRect(x: 0, y: (screenHeight - 50), width: screenWidth, height: 50)
     }
-
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        print(#function)
-//        super.traitCollectionDidChange(previousTraitCollection)
-    }
-    
-//    override func updateViewConstraints() {
-//        print(#function)
-//        super.updateViewConstraints()
-//    }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         print(#function)
-//        super.viewWillTransition(to: size, with: coordinator)
-//        screenHeight = UIScreen.main.bounds.height
-//        screenWidth = UIScreen.main.bounds.width
-//        print("height: \(screenHeight)")
-//        print("width: \(screenWidth)")
-        
-//        coordinator.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) -> Void in
-//            self.screenHeight = UIScreen.main.bounds.height
-//            self.screenWidth = UIScreen.main.bounds.width
-//            print("height: \(self.screenHeight)")
-//            print("width: \(self.screenWidth)")
-//        }, completion: { (UIViewControllerTransitionCoordinatorContext) -> Void in
-//            //refresh view once rotation is completed not in will transition as it returns incorrect frame size.Refresh here
-//        })
+        screenWidth = UIScreen.main.bounds.width
+        screenHeight = UIScreen.main.bounds.height
+        print("width: \(screenWidth)")
+        print("height: \(screenHeight)")
+//        screenMaxX = UIScreen.main.bounds.maxX
+//        screenMaxY = UIScreen.main.bounds.maxY
+//        print("max X: \(screenMaxX)")
+//        print("max Y: \(screenMaxY)")
+        super.viewWillTransition(to: size, with: coordinator)
 
+        //// either put configurePageControl() or just pageControl.frame = CGRect(x: 0, y: (screenHeight - 50), width: screenWidth, height: 50)
+        //// below or in viewDidLayoutSubviews()
 //        coordinator.animate(alongsideTransition: { _ in self.configurePageControl() }, completion: nil )
-//        coordinator.animate(alongsideTransition: nil, completion: { _ in self.configurePageControl()} )
-//        coordinator.animate(alongsideTransition: <#T##((UIViewControllerTransitionCoordinatorContext) -> Void)?##((UIViewControllerTransitionCoordinatorContext) -> Void)?##(UIViewControllerTransitionCoordinatorContext) -> Void#>, completion: <#T##((UIViewControllerTransitionCoordinatorContext) -> Void)?##((UIViewControllerTransitionCoordinatorContext) -> Void)?##(UIViewControllerTransitionCoordinatorContext) -> Void#>
-//        coordinator.animateAlongsideTransition(in: <#T##UIView?#>, animation: <#T##((UIViewControllerTransitionCoordinatorContext) -> Void)?##((UIViewControllerTransitionCoordinatorContext) -> Void)?##(UIViewControllerTransitionCoordinatorContext) -> Void#>, completion: <#T##((UIViewControllerTransitionCoordinatorContext) -> Void)?##((UIViewControllerTransitionCoordinatorContext) -> Void)?##(UIViewControllerTransitionCoordinatorContext) -> Void#>)
+//        coordinator.animate(alongsideTransition: { _ in self.pageControl.frame = CGRect(x: 0, y: (self.screenHeight - 50), width: self.screenWidth, height: 50) }, completion: nil )
     }
-
-    
-    
-// // https://stackoverflow.com/questions/40262481/uiview-frame-not-updating-after-orientation-change
-// // deprecated
-//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-//        coordinator.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) -> Void in
-//            let orient = UIApplication.shared.statusBarOrientation
-//            switch orient {
-//            case .portrait:
-//                print("Portrait")
-//            case .landscapeLeft,.landscapeRight :
-//                print("Landscape")
-//            default:
-//                print("Anything But Portrait")
-//            }
-//        }, completion: { (UIViewControllerTransitionCoordinatorContext) -> Void in
-//            //refresh view once rotation is completed not in will transition as it returns incorrect frame size.Refresh here
-//        })
-//        super.viewWillTransition(to: size, with: coordinator)
-//    }
-    
 
     lazy var subViewControllers: [UIViewController] = {
         return [
@@ -132,20 +94,14 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
         }
         return subViewControllers[currentPageIndex + 1]
     }
-
-
     
     
     // None of below seem to work on iPad...
-//    func pageViewControllerSupportedInterfaceOrientations(_ pageViewController: UIPageViewController) -> UIInterfaceOrientationMask {
-//        return UIInterfaceOrientationMask.all
-//    }
-
-//    func pageViewControllerSupportedInterfaceOrientations(_ pageViewController: UIPageViewController) -> UIInterfaceOrientationMask {
-//        return UIInterfaceOrientationMask.portrait
-//    }
+    func pageViewControllerSupportedInterfaceOrientations(_ pageViewController: UIPageViewController) -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
     
-//    override var shouldAutorotate: Bool {
-//        return false
-//    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
 }
