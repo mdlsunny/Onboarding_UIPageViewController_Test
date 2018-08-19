@@ -34,6 +34,8 @@ class OnboardingLastPageViewController: UIViewController {
         //        print(#function)
         //        print("width: \(screenWidth)")
         //        print("height: \(screenHeight)")
+        //        print("Top Safe Area: \(bottomSafeArea)")
+        //        print("Bottom Safe Area: \(bottomSafeArea)")
         super.viewDidLayoutSubviews()
         configureStartButton()
     }
@@ -53,6 +55,13 @@ extension String {
 extension UIViewController {
     var screenHeight: CGFloat { return UIScreen.main.bounds.height }
     var screenWidth: CGFloat { return UIScreen.main.bounds.width }
+    var topSafeArea: CGFloat {
+        if #available(iOS 11.0, *) {
+            return view.safeAreaInsets.top
+        } else {
+            return topLayoutGuide.length
+        }
+    }
     var bottomSafeArea: CGFloat {
         if #available(iOS 11.0, *) {
             return view.safeAreaInsets.bottom

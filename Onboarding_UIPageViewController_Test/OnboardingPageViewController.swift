@@ -14,7 +14,6 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
     var pageControl = UIPageControl()
     
     private func framePageControl() {
-        //        print("Bottome Safe Area: \(bottomSafeArea)")
         pageControl.frame = CGRect(x: 0, y: (screenHeight - bottomSafeArea - OnboardingPageViewController.pageControlHeight) , width: screenWidth, height: OnboardingPageViewController.pageControlHeight)
     }
     
@@ -44,13 +43,15 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
         //        print(#function)
         //        print("width: \(screenWidth)")
         //        print("height: \(screenHeight)")
+        //        print("Top Safe Area: \(bottomSafeArea)")
+        //        print("Bottom Safe Area: \(bottomSafeArea)")
         super.viewDidLayoutSubviews()
         framePageControl()
         
         
     }
     
-    lazy var subViewControllers: [UIViewController] = {
+    lazy private var subViewControllers: [UIViewController] = {
         return [
             UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "vc1"),
             UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "vc2"),
