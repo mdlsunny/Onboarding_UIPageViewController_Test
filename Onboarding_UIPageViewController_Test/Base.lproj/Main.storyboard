@@ -25,10 +25,10 @@
             </objects>
             <point key="canvasLocation" x="937" y="106"/>
         </scene>
-        <!--Last Page View Controller-->
+        <!--Onboarding Last Page View Controller-->
         <scene sceneID="I0x-b0-gVO">
             <objects>
-                <viewController storyboardIdentifier="vc2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yeU-NF-J2X" customClass="LastPageViewController" customModule="Onboarding_UIPageViewController_Test" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="vc2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yeU-NF-J2X" customClass="OnboardingLastPageViewController" customModule="Onboarding_UIPageViewController_Test" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Slf-hU-LNl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

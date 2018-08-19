@@ -7,10 +7,10 @@
 
 import UIKit
 
-class LastPageViewController: UIViewController {
-
+class OnboardingLastPageViewController: UIViewController {
+    
     let startButtonTitleString = "Start"
-
+    
     @IBOutlet weak var startButton: UIButton!
     
     func configureStartButton() {
@@ -25,15 +25,15 @@ class LastPageViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-//        print(#function)
+        //        print(#function)
         super.viewDidLoad()
         configureStartButton()
     }
     
     override func viewDidLayoutSubviews() {
-        print(#function)
-        print("width: \(screenWidth)")
-        print("height: \(screenHeight)")
+        //        print(#function)
+        //        print("width: \(screenWidth)")
+        //        print("height: \(screenHeight)")
         super.viewDidLayoutSubviews()
         configureStartButton()
     }
@@ -53,41 +53,25 @@ extension String {
 extension UIViewController {
     var screenHeight: CGFloat { return UIScreen.main.bounds.height }
     var screenWidth: CGFloat { return UIScreen.main.bounds.width }
+    var bottomSafeArea: CGFloat {
+        if #available(iOS 11.0, *) {
+            return view.safeAreaInsets.bottom
+        } else {
+            return bottomLayoutGuide.length
+        }
+    }
 }
 
-extension LastPageViewController {
-    var startButtonFontSize: CGFloat { return screenHeight * 0.05 }
+extension OnboardingLastPageViewController {
+    var startButtonFontSize: CGFloat { return screenHeight * 0.06 }
     var startButtonFont: UIFont { return UIFont.systemFont(ofSize: startButtonFontSize) }
     var startButtonWidth: CGFloat { return startButtonTitleString.size(OfFont: startButtonFont).width * 1.3 }
     var startButtonHeight: CGFloat { return startButtonTitleString.size(OfFont: startButtonFont).height * 1.1 }
     var startButtonOriginX: CGFloat { return (screenWidth - startButtonWidth) * 0.5 }
-    var startButtonOriginY: CGFloat { return screenHeight * 0.92 - startButtonHeight }
+    var startButtonOriginY: CGFloat { return (screenHeight - bottomSafeArea - OnboardingPageViewController.pageControlHeight - startButtonHeight * 1.1) }
     var startButtonCornerRadius: CGFloat { return startButtonFontSize / 4 }
 }
 
-extension UIScreen {
-    func widthOfSafeArea() -> CGFloat {
-        guard let rootView = UIApplication.shared.keyWindow else { return 0 }
-        if #available(iOS 11.0, *) {
-            let leftInset = rootView.safeAreaInsets.left
-            let rightInset = rootView.safeAreaInsets.right
-            return rootView.bounds.width - leftInset - rightInset
-        } else {
-            return rootView.bounds.width
-        }
-    }
-    
-    func heightOfSafeArea() -> CGFloat {
-        guard let rootView = UIApplication.shared.keyWindow else { return 0 }
-        if #available(iOS 11.0, *) {
-            let topInset = rootView.safeAreaInsets.top
-            let bottomInset = rootView.safeAreaInsets.bottom
-            return rootView.bounds.height - topInset - bottomInset
-        } else {
-            return rootView.bounds.height
-        }
-    }
-}
 
 
 

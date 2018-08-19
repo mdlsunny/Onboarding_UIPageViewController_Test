@@ -9,11 +9,13 @@ import UIKit
 
 class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate
 {
-    let pageControlHeightToScreenHeight: CGFloat = 0.07
+    static let pageControlHeight: CGFloat = 30
+
     var pageControl = UIPageControl()
     
     private func framePageControl() {
-        pageControl.frame = CGRect(x: 0, y: screenHeight * (1 - pageControlHeightToScreenHeight), width: screenWidth, height: screenHeight * pageControlHeightToScreenHeight)
+        //        print("Bottome Safe Area: \(bottomSafeArea)")
+        pageControl.frame = CGRect(x: 0, y: (screenHeight - bottomSafeArea - OnboardingPageViewController.pageControlHeight) , width: screenWidth, height: OnboardingPageViewController.pageControlHeight)
     }
     
     private func configurePageControl() {
@@ -38,25 +40,27 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
         configurePageControl()
     }
     
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        let pageContentViewController = pageViewController.viewControllers![0]
-        self.pageControl.currentPage = subViewControllers.index(of: pageContentViewController)!
-    }
-    
     override func viewDidLayoutSubviews() {
-//        print(#function)
-//        print("width: \(screenWidth)")
-//        print("height: \(screenHeight)")
+        //        print(#function)
+        //        print("width: \(screenWidth)")
+        //        print("height: \(screenHeight)")
         super.viewDidLayoutSubviews()
         framePageControl()
+        
+        
     }
-
+    
     lazy var subViewControllers: [UIViewController] = {
         return [
             UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "vc1"),
             UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "vc2"),
             ]
     }()
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        let pageContentViewController = pageViewController.viewControllers![0]
+        self.pageControl.currentPage = subViewControllers.index(of: pageContentViewController)!
+    }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let currentPageIndex: Int = subViewControllers.index(of: viewController) ?? 0
@@ -75,11 +79,11 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
     }
     
     // Below only works on iPhone ...
-    func pageViewControllerSupportedInterfaceOrientations(_ pageViewController: UIPageViewController) -> UIInterfaceOrientationMask {
-        return UIInterfaceOrientationMask.portrait
-    }
-    
-    override var shouldAutorotate: Bool {
-        return false
-    }
+    //    func pageViewControllerSupportedInterfaceOrientations(_ pageViewController: UIPageViewController) -> UIInterfaceOrientationMask {
+    //        return UIInterfaceOrientationMask.portrait
+    //    }
+    //
+    //    override var shouldAutorotate: Bool {
+    //        return false
+    //    }
 }

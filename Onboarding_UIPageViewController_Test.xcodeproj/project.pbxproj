@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		33692C4E2120E17500A7635D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33692C4D2120E17500A7635D /* AppDelegate.swift */; };
-		33692C502120E17500A7635D /* LastPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33692C4F2120E17500A7635D /* LastPageViewController.swift */; };
+		33692C502120E17500A7635D /* OnboardingLastPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33692C4F2120E17500A7635D /* OnboardingLastPageViewController.swift */; };
 		33692C532120E17500A7635D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33692C512120E17500A7635D /* Main.storyboard */; };
 		33692C562120E17500A7635D /* Onboarding_UIPageViewController_Test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 33692C542120E17500A7635D /* Onboarding_UIPageViewController_Test.xcdatamodeld */; };
 		33692C582120E17700A7635D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33692C572120E17700A7635D /* Assets.xcassets */; };
@@ -39,7 +39,7 @@
 /* Begin PBXFileReference section */
 		33692C4A2120E17500A7635D /* Onboarding_UIPageViewController_Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Onboarding_UIPageViewController_Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33692C4D2120E17500A7635D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		33692C4F2120E17500A7635D /* LastPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastPageViewController.swift; sourceTree = "<group>"; };
+		33692C4F2120E17500A7635D /* OnboardingLastPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLastPageViewController.swift; sourceTree = "<group>"; };
 		33692C522120E17500A7635D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		33692C552120E17500A7635D /* Onboarding_UIPageViewController_Test.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Onboarding_UIPageViewController_Test.xcdatamodel; sourceTree = "<group>"; };
 		33692C572120E17700A7635D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -103,15 +103,15 @@
 		33692C4C2120E17500A7635D /* Onboarding_UIPageViewController_Test */ = {
 			isa = PBXGroup;
 			children = (
-				33ACCA4321290065002B58C7 /* MainViewController.swift */,
 				33692C4D2120E17500A7635D /* AppDelegate.swift */,
-				33692C4F2120E17500A7635D /* LastPageViewController.swift */,
-				33692C512120E17500A7635D /* Main.storyboard */,
-				33692C7E2120E24B00A7635D /* OnboardingPageViewController.swift */,
 				33692C572120E17700A7635D /* Assets.xcassets */,
-				33692C592120E17700A7635D /* LaunchScreen.storyboard */,
 				33692C5C2120E17700A7635D /* Info.plist */,
+				33692C592120E17700A7635D /* LaunchScreen.storyboard */,
+				33692C512120E17500A7635D /* Main.storyboard */,
+				33ACCA4321290065002B58C7 /* MainViewController.swift */,
 				33692C542120E17500A7635D /* Onboarding_UIPageViewController_Test.xcdatamodeld */,
+				33692C4F2120E17500A7635D /* OnboardingLastPageViewController.swift */,
+				33692C7E2120E24B00A7635D /* OnboardingPageViewController.swift */,
 			);
 			path = Onboarding_UIPageViewController_Test;
 			sourceTree = "<group>";
@@ -266,7 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33692C7F2120E24B00A7635D /* OnboardingPageViewController.swift in Sources */,
-				33692C502120E17500A7635D /* LastPageViewController.swift in Sources */,
+				33692C502120E17500A7635D /* OnboardingLastPageViewController.swift in Sources */,
 				33692C562120E17500A7635D /* Onboarding_UIPageViewController_Test.xcdatamodeld in Sources */,
 				33692C4E2120E17500A7635D /* AppDelegate.swift in Sources */,
 				33ACCA4421290065002B58C7 /* MainViewController.swift in Sources */,
