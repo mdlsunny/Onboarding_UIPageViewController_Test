@@ -9,16 +9,15 @@ import UIKit
 
 class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate
 {
+    let pageControlHeightToScreenHeight: CGFloat = 0.07
     var pageControl = UIPageControl()
-    var screenHeight = UIScreen.main.bounds.height
-    var screenWidth = UIScreen.main.bounds.width
-    var screenMaxX = UIScreen.main.bounds.maxX
-    var screenMaxY = UIScreen.main.bounds.maxY
-    let pageControlHeightToBoundsHeight: CGFloat = 0.07
-
-    func configurePageControl() {
-//        pageControl.frame = CGRect(x: 0, y: screenHeight * (1 - pageControlHeightToBoundsHeight), width: screenWidth, height: screenHeight * pageControlHeightToBoundsHeight)
-        pageControl.frame = CGRect(x: 0, y: (screenHeight - 50), width: screenWidth, height: 50)
+    
+    private func framePageControl() {
+        pageControl.frame = CGRect(x: 0, y: screenHeight * (1 - pageControlHeightToScreenHeight), width: screenWidth, height: screenHeight * pageControlHeightToScreenHeight)
+    }
+    
+    private func configurePageControl() {
+        framePageControl()
         self.pageControl.numberOfPages = subViewControllers.count
         self.pageControl.currentPage = 0
         self.pageControl.alpha = 0.75
@@ -29,8 +28,8 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
     }
     
     override func viewDidLoad() {
+        //        print(#function)
         super.viewDidLoad()
-        print("viewDidLoad")
         self.delegate = self
         self.dataSource = self
         if let firstViewController = subViewControllers.first {
@@ -45,31 +44,11 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
     }
     
     override func viewDidLayoutSubviews() {
-        print(#function)
+//        print(#function)
+//        print("width: \(screenWidth)")
+//        print("height: \(screenHeight)")
         super.viewDidLayoutSubviews()
-        updateViewConstraints()
-        //// either put configurePageControl() or just pageControl.frame = CGRect(x: 0, y: (screenHeight - 50), width: screenWidth, height: 50)
-        //// below or in viewWillTransition()
-        // configurePageControl()
-        pageControl.frame = CGRect(x: 0, y: (screenHeight - 50), width: screenWidth, height: 50)
-    }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        print(#function)
-        screenWidth = UIScreen.main.bounds.width
-        screenHeight = UIScreen.main.bounds.height
-        print("width: \(screenWidth)")
-        print("height: \(screenHeight)")
-//        screenMaxX = UIScreen.main.bounds.maxX
-//        screenMaxY = UIScreen.main.bounds.maxY
-//        print("max X: \(screenMaxX)")
-//        print("max Y: \(screenMaxY)")
-        super.viewWillTransition(to: size, with: coordinator)
-
-        //// either put configurePageControl() or just pageControl.frame = CGRect(x: 0, y: (screenHeight - 50), width: screenWidth, height: 50)
-        //// below or in viewDidLayoutSubviews()
-//        coordinator.animate(alongsideTransition: { _ in self.configurePageControl() }, completion: nil )
-//        coordinator.animate(alongsideTransition: { _ in self.pageControl.frame = CGRect(x: 0, y: (self.screenHeight - 50), width: self.screenWidth, height: 50) }, completion: nil )
+        framePageControl()
     }
 
     lazy var subViewControllers: [UIViewController] = {
@@ -95,8 +74,7 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
         return subViewControllers[currentPageIndex + 1]
     }
     
-    
-    // None of below seem to work on iPad...
+    // Below only works on iPhone ...
     func pageViewControllerSupportedInterfaceOrientations(_ pageViewController: UIPageViewController) -> UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.portrait
     }
