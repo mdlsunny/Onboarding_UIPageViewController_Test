@@ -13,15 +13,22 @@ class OnboardingLastPageViewController: UIViewController {
     
     @IBOutlet weak var startButton: UIButton!
     
+    func layoutStartButton() {
+        startButton.titleLabel?.font = UIFont.systemFont(ofSize: screenHeight * 0.06)
+        startButton.layer.cornerRadius = screenHeight * 0.015
+        startButton.frame = CGRect(x: (screenWidth - startButtonTitleString.size(OfFont: (startButton.titleLabel?.font)!).width * 1.3) * 0.5,
+                                   y: screenHeight - bottomSafeArea - OnboardingPageViewController.pageControlHeight - startButtonTitleString.size(OfFont: (startButton.titleLabel?.font)!).height * 1.21,
+                                   width: startButtonTitleString.size(OfFont: (startButton.titleLabel?.font)!).width * 1.3,
+                                   height: startButtonTitleString.size(OfFont: (startButton.titleLabel?.font)!).height * 1.1)
+    }
+    
+    
     func configureStartButton() {
         startButton.setTitle(startButtonTitleString, for: .normal)
-        startButton.titleLabel?.font = startButtonFont
-        startButton.frame = CGRect(x: startButtonOriginX, y: startButtonOriginY, width: startButtonWidth, height: startButtonHeight)
         startButton.layer.borderWidth = 1
         startButton.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         startButton.setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: .normal)
         startButton.layer.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        startButton.layer.cornerRadius = startButtonCornerRadius
     }
     
     override func viewDidLoad() {
@@ -37,7 +44,7 @@ class OnboardingLastPageViewController: UIViewController {
         //        print("Top Safe Area: \(bottomSafeArea)")
         //        print("Bottom Safe Area: \(bottomSafeArea)")
         super.viewDidLayoutSubviews()
-        configureStartButton()
+        layoutStartButton()
     }
     
     override func didReceiveMemoryWarning() {
@@ -69,16 +76,6 @@ extension UIViewController {
             return bottomLayoutGuide.length
         }
     }
-}
-
-extension OnboardingLastPageViewController {
-    var startButtonFontSize: CGFloat { return screenHeight * 0.06 }
-    var startButtonFont: UIFont { return UIFont.systemFont(ofSize: startButtonFontSize) }
-    var startButtonWidth: CGFloat { return startButtonTitleString.size(OfFont: startButtonFont).width * 1.3 }
-    var startButtonHeight: CGFloat { return startButtonTitleString.size(OfFont: startButtonFont).height * 1.1 }
-    var startButtonOriginX: CGFloat { return (screenWidth - startButtonWidth) * 0.5 }
-    var startButtonOriginY: CGFloat { return (screenHeight - bottomSafeArea - OnboardingPageViewController.pageControlHeight - startButtonHeight * 1.1) }
-    var startButtonCornerRadius: CGFloat { return startButtonFontSize / 4 }
 }
 
 

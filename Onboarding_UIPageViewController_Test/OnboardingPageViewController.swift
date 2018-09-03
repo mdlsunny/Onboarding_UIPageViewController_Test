@@ -13,12 +13,12 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
 
     var pageControl = UIPageControl()
     
-    private func framePageControl() {
+    private func layoutPageControl() {
         pageControl.frame = CGRect(x: 0, y: (screenHeight - bottomSafeArea - OnboardingPageViewController.pageControlHeight) , width: screenWidth, height: OnboardingPageViewController.pageControlHeight)
     }
     
     private func configurePageControl() {
-        framePageControl()
+        layoutPageControl()
         self.pageControl.numberOfPages = subViewControllers.count
         self.pageControl.currentPage = 0
         self.pageControl.alpha = 0.75
@@ -46,7 +46,7 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
         //        print("Top Safe Area: \(bottomSafeArea)")
         //        print("Bottom Safe Area: \(bottomSafeArea)")
         super.viewDidLayoutSubviews()
-        framePageControl()
+        layoutPageControl()
         
         
     }
