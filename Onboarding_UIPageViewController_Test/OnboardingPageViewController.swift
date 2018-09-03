@@ -14,11 +14,12 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
     var pageControl = UIPageControl()
     
     private func layoutPageControl() {
+        print(#function)
         pageControl.frame = CGRect(x: 0, y: (screenHeight - bottomSafeArea - OnboardingPageViewController.pageControlHeight) , width: screenWidth, height: OnboardingPageViewController.pageControlHeight)
     }
     
     private func configurePageControl() {
-        layoutPageControl()
+        print(#function)
         self.pageControl.numberOfPages = subViewControllers.count
         self.pageControl.currentPage = 0
         self.pageControl.alpha = 0.75
@@ -29,7 +30,7 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
     }
     
     override func viewDidLoad() {
-        //        print(#function)
+        print(#function)
         super.viewDidLoad()
         self.delegate = self
         self.dataSource = self
@@ -40,15 +41,13 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
     }
     
     override func viewDidLayoutSubviews() {
-        //        print(#function)
+        print(#function)
         //        print("width: \(screenWidth)")
         //        print("height: \(screenHeight)")
         //        print("Top Safe Area: \(bottomSafeArea)")
         //        print("Bottom Safe Area: \(bottomSafeArea)")
         super.viewDidLayoutSubviews()
         layoutPageControl()
-        
-        
     }
     
     lazy private var subViewControllers: [UIViewController] = {
@@ -59,11 +58,13 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
     }()
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        print(#function)
         let pageContentViewController = pageViewController.viewControllers![0]
         self.pageControl.currentPage = subViewControllers.index(of: pageContentViewController)!
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        print(#function)
         let currentPageIndex: Int = subViewControllers.index(of: viewController) ?? 0
         if (currentPageIndex <= 0) {
             return nil
@@ -72,6 +73,7 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        print(#function)
         let currentPageIndex: Int = subViewControllers.index(of: viewController) ?? 0
         if (currentPageIndex >= subViewControllers.count - 1) {
             return nil
