@@ -13,6 +13,10 @@ class OnboardingLastPageViewController: UIViewController {
     
     @IBOutlet weak var startButton: UIButton!
     
+    @IBAction func touchStartButton(_ sender: UIButton) {
+        print(#function)
+    }
+    
     func layoutStartButton() {
         startButton.titleLabel?.font = UIFont.systemFont(ofSize: screenHeight * 0.06)
         startButton.layer.cornerRadius = screenHeight * 0.015
